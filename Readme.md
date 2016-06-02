@@ -26,7 +26,7 @@ telnet localhost 5005
 
 Use Case | ShortCut/Command
 --- | ---
-Open a screen session | `screen`
+Open a screen session called `test` | `screen -S test`
 Split into two regions | `S`
 Region Top display window 0 named `Client1` | `c`, then `A`, type `Client1`
 Region Bottom display window 1 named `Server1` | `Tab`, `c`, then `A`, type `Server1`
