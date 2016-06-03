@@ -57,7 +57,7 @@ Operation | ShortCut/Command
 New | `Ctrl`+`a`, Then Press `c`
 Rename | `Ctrl`+`a`, Then Press `A`(capital A)
 Clear | `Ctrl`+`a`, Then Press `C`(capital C)
-Kill | `Ctrl`+`a`, Then Press `k`
+Kill | `Ctrl`+`a`, Then Press `k` or `K`(capital K)
 
 ### Window Navigation in a Screen Session
 Operation | ShortCut/Command
@@ -82,4 +82,19 @@ Keep Only Current | `Ctrl`+`a`, Then Press `Q`(capital Q) or Type `:only`
 Operation | ShortCut/Command
 --- | ---
 Navigate | `Ctrl`+`a`, Then Press `Tab` or Type `:focus up/down/right/left`
+
+Note: For easy navigation, use following key binding and resizing: Write to `~/.screenrc`, then reload with `Ctrl` + `a` and type `:source ~/.screenrc`. Note after the binding, use `K` to kill current window instead of previous `k`
+```
+# navigating regions
+bind j focus down
+bind k focus up
+bind l focus right
+bind h focus left
+
+
+# resizing regions
+bind + resize +5
+bind - resize -5
+bind = resize =
+```
 
