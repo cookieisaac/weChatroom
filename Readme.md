@@ -60,7 +60,9 @@ Command | Available in | Description
 
 ## Design
 
+![alt tag](https://github.com/cookieisaac/weChatroom/blob/master/misc/uml.png)
 
+Generated with [PlantUML](http://plantuml.com/)
 
 ---
 
