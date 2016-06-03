@@ -2,6 +2,8 @@
 
 An online chatroom server that is based on Python standard libraries `asyncore` and `asynchat`
 
+---
+
 ## Usage
 
 ### Start Server
@@ -14,25 +16,53 @@ Note: Use `netstat -anp | grep 5005` to verify the server is indeed up and runni
 
 ### Start Client
 
-```
-telnet localhost 5005
-login ike
-say hello
-look
-who
-logout
-```
+client1 | client2 | client 3
+---|---|---
+`telnet localhost 5005` | `telnet localhost 5005` | `telnet localhost 5005`
+`/login ike` | `/login jacky` | `/login julia`
+`/new Room1` | `/new Room1` |  `/list`
+`/enter Room1` | `/delete Room1` | `enter Room1` 
+`Hello, how are you doing?` | `What's going on?` | `Hey, nothing much`
+`/who` | `/rooms` | `/look`
+`/exit` | `/list` | `/exit`
+`Hey jacky` | `/where` | `logout`
+`/delete Room1` | `/delete Room1` | N/A 
+
+---
 
 ## Features
 
+### Supported Commands
+
 Command | Available in | Description
 ---|---|---
-`login $name` | Login room | Used to log into the server
-`logout` | Logout room | Used to log out of the server
-`say statement` | Chat rooms | Used to say something
-`look` | Chat rooms | Used to find out who is in the same room
-`who` | Chat rooms | Used to find out who is logged into the server
+`/login NAME` | Login room | Log into the server with username NAME
+`/logout` | Logout room | Log out of the server
+`STUFF` | Chat rooms | Say STUFF to everyone in the room
+`/say STUFF` | Chat rooms | Say STUFF to everyone in the room
+`/look` | Chat rooms | Look up who is in the same room
+`/who` | Chat rooms | Find out who is logged into the server
+`/list` | Chat rooms | List all currently supported command
+`/where` | Chat rooms | Display current room
+`/rooms` | Chat rooms | Display all available rooms
+`/new ROOM` | Chat rooms | Create a new ROOM
+`/enter ROOM` | Chat rooms | Enter a ROOM
+`/exit` | Chat rooms | Exit current room and go back to Main Lobby
+`/delete ROOM` | Chat rooms |  Delete an empty ROOM
 
+### To-do
+1. ~~Create multiple rooms~~
+2. ~~Use "/" to denote command~~
+3. ~~Deprecate `say` command~~
+4. Create a GUI client
+
+---
+
+## Design
+
+
+
+---
 
 ## Bonus: [`screen` cheatsheet](https://www.youtube.com/watch?v=dFdqyccdWUE)
 

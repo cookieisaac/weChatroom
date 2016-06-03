@@ -1,8 +1,8 @@
 from asyncore import dispatcher
 import asyncore
 import socket
-from chatsession import ChatSession
-from chatroom import ChatRoom
+from libs.chatsession import ChatSession
+from libs.chatroom import ChatRoom
 
 NAME='WeChatroom'
 PORT=5005
@@ -16,9 +16,12 @@ class ChatServer(dispatcher):
         self.bind(('', port))
         self.listen(5)
         
+        self.server_name  = name
+        
         self.users = {}
-        self.name  = name
-        self.main_room = ChatRoom(self)
+        self.rooms = {}
+        self.main_room = ChatRoom(self, "Main Lobby")
+        self.rooms["Main Lobby"] = self.main_room
 
     def handle_accept(self):
         conn, addr = self.accept()

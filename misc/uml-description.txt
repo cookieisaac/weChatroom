@@ -1,0 +1,28 @@
+@startuml
+
+ChatServer "1" *-- "many" ChatSession
+ChatServer "1" *-- "many" Room
+Room "1" *-- "many" ChatSession
+
+CommandHandler : handle(session, cmd)
+Room : server
+Room : users
+Room : do_logout(session)
+LoginRoom : do_login(session)
+ChatRoom : do_<cmd>(session)
+
+ChatSession : server
+ChatSession : current_room
+ChatSession : enter(room)
+
+ChatServer : users
+ChatServer : rooms
+
+asyncore.dispatcher <|-- ChatServer
+asynchat.async_chat <|-- ChatSession
+CommandHandler <|-- Room
+Room <|-- LoginRoom
+Room <|-- LogoutRoom
+Room <|-- ChatRoom
+
+@enduml

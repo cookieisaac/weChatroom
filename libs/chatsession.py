@@ -9,7 +9,7 @@ class ChatSession(async_chat):
         self.data = []
         self.server = server
         self.name = None
-        self.enter(LoginRoom(server))
+        self.enter(LoginRoom(server, "Login Room"))
         
     def enter(self, room):
         try: 
@@ -35,4 +35,4 @@ class ChatSession(async_chat):
             
     def handle_close(self):
         async_chat.handle_close(self)
-        self.enter(LogoutRoom(self.server))
+        self.enter(LogoutRoom(self.server, "Logout Room"))
