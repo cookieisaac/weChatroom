@@ -2,6 +2,7 @@ from asyncore import dispatcher
 import asyncore
 import socket
 from chatsession import ChatSession
+from chatroom import ChatRoom
 
 NAME='WeChatroom'
 PORT=5005
@@ -15,21 +16,14 @@ class ChatServer(dispatcher):
         self.bind(('', port))
         self.listen(5)
         
-        self.sessions = []
+        self.users = {}
         self.name  = name
+        self.main_room = ChatRoom(self)
 
     def handle_accept(self):
         conn, addr = self.accept()
-        self.sessions.append(ChatSession(self, conn))
-        print ('Connection attempt from', addr[0])
+        ChatSession(self, conn)
         
-    def disconnect(self, session):
-        self.sessions.remove(session)
-        
-    def broadcast(self, line):
-        for session in sessions:
-            self.push(line + '\r\n')
-    
     
 if __name__ == "__main__":
     s = ChatServer(PORT, NAME)

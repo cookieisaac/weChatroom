@@ -16,8 +16,22 @@ Note: Use `netstat -anp | grep 5005` to verify the server is indeed up and runni
 
 ```
 telnet localhost 5005
+login ike
+say hello
+look
+who
+logout
 ```
 
+## Features
+
+Command | Available in | Description
+---|---|---
+`login $name` | Login room | Used to log into the server
+`logout` | Logout room | Used to log out of the server
+`say statement` | Chat rooms | Used to say something
+`look` | Chat rooms | Used to find out who is in the same room
+`who` | Chat rooms | Used to find out who is logged into the server
 
 
 ## Bonus: [`screen` cheatsheet](https://www.youtube.com/watch?v=dFdqyccdWUE)

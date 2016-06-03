@@ -1,4 +1,6 @@
 from asynchat import async_chat
+import asynchat
+from chatroom import LoginRoom, LogoutRoom, EndSession
 
 class ChatSession(async_chat):
     def __init__(self, server, sock):
@@ -6,8 +8,19 @@ class ChatSession(async_chat):
         self.set_terminator('\r\n')
         self.data = []
         self.server = server
+        self.name = None
+        self.enter(LoginRoom(server))
         
-        self.push('Welcome to %s\r\n' % self.server.name)
+    def enter(self, room):
+        try: 
+            current_room = self.room
+        except AttributeError:
+            pass
+        else:
+            current_room.remove(self)
+            
+        self.room = room
+        room.add(self)       
         
     def collect_incoming_data(self, data):
         self.data.append(data)
@@ -15,4 +28,11 @@ class ChatSession(async_chat):
     def found_terminator(self):
         line = "".join(self.data)
         self.data = []
-        print line
+        try: 
+            self.room.handle(self, line)
+        except EndSession:
+            self.handle_close()
+            
+    def handle_close(self):
+        async_chat.handle_close(self)
+        self.enter(LogoutRoom(self.server))
